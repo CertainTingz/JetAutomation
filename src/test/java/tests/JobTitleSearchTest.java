@@ -16,14 +16,13 @@ public class JobTitleSearchTest extends BaseTest {
         CareerHomePage careerHomePage = new CareerHomePage(page);
         CareerFilterPage careerFilterPage = new CareerFilterPage(page);
 
-        //Handling Cookie Notification
-        if (page.isVisible("button:has-text('Accept all')")){
-            page.click("button:has-text('Accept all')");
-        }
-        else{
-            System.out.println("cookie page not visible");
-
-        }
+        // To add to base test: Cookie management
+        //if (page.isVisible("button:has-text('Accept all')")){
+          //  page.click("button:has-text('Accept all')");
+        //}
+        //else{
+          //  System.out.println("cookie page not visible");
+      //  }
 
         //test.info("Navigating to Login Page");
         page.navigate("https://careers.justeattakeaway.com/global/en/home");
@@ -35,10 +34,6 @@ public class JobTitleSearchTest extends BaseTest {
         //test.info("Submitting Login Form");
         careerHomePage.clickCareerPageSearchButton();
 
-
-
-        //Assert.assertEquals(homePage.getHomepageLabelText(), "Dashboard");
-        //Assert.assertTrue(careerHomePage.isCareerPageRefineLabelDisplayed());
 
         Set<String> locations = careerFilterPage.getUniqueLocations();
         System.out.println("locations: " + locations.size());
