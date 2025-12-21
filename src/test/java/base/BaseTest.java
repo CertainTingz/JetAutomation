@@ -20,17 +20,16 @@ public class BaseTest {
 
         // Playwright Setup
         playwright = Playwright.create();
-        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setChannel("msedge"));
+        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setChannel("msedge").setSlowMo(5000));
 
         page = browser.newPage();
 
     }
 
-
     @AfterMethod
-    public void tearDown() {
-        if(browser != null) browser.close();
-        if(playwright != null) playwright.close();
+  public void tearDown() {
+    if(browser != null) browser.close();
+    if(playwright != null) playwright.close();
     }
 
 
