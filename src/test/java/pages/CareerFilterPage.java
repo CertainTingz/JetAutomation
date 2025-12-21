@@ -18,7 +18,9 @@ public class CareerFilterPage {
     // Declaring locators
     private final Locator careerFilterCountry;
     private final Locator careerFilterSelectCountry_Netherlands;
+    private final Locator careerFilterSelectCategory_Sales;
     private final Locator careerSearchResult;
+    private final Locator careerFilterRefineYourSearchLabel;
 
 
 
@@ -30,9 +32,8 @@ public class CareerFilterPage {
 
         this.careerFilterCountry = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Country"));
         this.careerFilterSelectCountry_Netherlands = page.getByRole(AriaRole.CHECKBOX, new Page.GetByRoleOptions().setName(Pattern.compile("netherlands", Pattern.CASE_INSENSITIVE)));
-
-        //Adding a proper  wait for this list
-        //page.waitForSelector("[data-ph-at-id='job-location'] div[role='text']");
+        this.careerFilterRefineYourSearchLabel = page.getByRole(AriaRole.HEADING, new Page.GetByRoleOptions().setName("Refine your search"));
+        this.careerFilterSelectCategory_Sales = page.getByRole(AriaRole.CHECKBOX, new Page.GetByRoleOptions().setName(Pattern.compile("sales", Pattern.CASE_INSENSITIVE)));
         this.careerSearchResult = page.locator("[data-ph-at-id='job-location'] div[role='text']");
     }
 
@@ -43,7 +44,6 @@ public class CareerFilterPage {
 
     public void clickCareerFilterCountry_Netherlands() {
         careerFilterSelectCountry_Netherlands.check();
-
         // Wait for first result to contain "Netherlands"
         // Using Pattern for case-insensitive matching
         assertThat(careerSearchResult.last())
@@ -59,10 +59,19 @@ public class CareerFilterPage {
         // Extract locations
         List<String> locations = careerSearchResult.allTextContents();
 
-
         return new HashSet<>(locations);
     }
 
+    public void scrollToCareerFilterRefineYourSearchLabel(){
+        // Scrolling to label
+        careerFilterRefineYourSearchLabel.scrollIntoViewIfNeeded();
+    }
+
+    public boolean isCareerFilterSelectCategory_SalesChecked() {
+        careerFilterSelectCategory_Sales.waitFor();
+        return careerFilterSelectCategory_Sales.isChecked();
+
+    }
 
 }
 

@@ -16,13 +16,7 @@ public class JobTitleSearchTest extends BaseTest {
         CareerHomePage careerHomePage = new CareerHomePage(page);
         CareerFilterPage careerFilterPage = new CareerFilterPage(page);
 
-        // To add to base test: Cookie management
-        //if (page.isVisible("button:has-text('Accept all')")){
-          //  page.click("button:has-text('Accept all')");
-        //}
-        //else{
-          //  System.out.println("cookie page not visible");
-      //  }
+
 
         //test.info("Navigating to Login Page");
         page.navigate("https://careers.justeattakeaway.com/global/en/home");
@@ -62,13 +56,6 @@ public class JobTitleSearchTest extends BaseTest {
             );
         }
 
-
-
-
     }
-
-
-
-
 
 }
