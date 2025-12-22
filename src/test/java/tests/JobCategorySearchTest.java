@@ -19,9 +19,6 @@ public class JobCategorySearchTest extends BaseTest {
         // Test.info("Navigating to Login Page");
         page.navigate("https://careers.justeattakeaway.com/global/en/home");
 
-        // Waiting for the dropdown to load
-        //waitForHydration();
-
         // Click on search bar ("Search for Job Title")
         careerHomePage.clickCareerHomeSearchBar();
 
@@ -33,7 +30,19 @@ public class JobCategorySearchTest extends BaseTest {
 
         // Check if Sales Checkbox is checked :
         Assert.assertTrue(
-                careerFilterPage.isCareerFilterSelectCategory_SalesChecked());
+               careerFilterPage.isCareerFilterSelectCategory_SalesChecked());
+
+
+
+        int labelCount = careerFilterPage.getCareerSearchLabelResultCount();
+        int actualJobCount = careerFilterPage.getTotalJobCount();
+
+        // Check if the number of jobs matches that provided in the list
+        Assert.assertEquals(labelCount, actualJobCount);
+
+        System.out.println("this is the count from label : "+ labelCount);
+        System.out.println("this is the count from element : "+ actualJobCount);
+
 
 
         //page.pause();
