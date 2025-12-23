@@ -34,7 +34,7 @@ public class BaseTest {
 
         // Playwright Setup
         playwright = Playwright.create();
-        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setChannel("msedge"));
+        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(true).setChannel("msedge"));
 
         page = browser.newPage();
 

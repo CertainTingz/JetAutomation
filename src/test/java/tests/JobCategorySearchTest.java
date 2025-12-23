@@ -17,19 +17,21 @@ public class JobCategorySearchTest extends BaseTest {
         CareerHomePage careerHomePage = new CareerHomePage(page);
         CareerFilterPage careerFilterPage = new CareerFilterPage(page);
 
-        // Test.info("Navigating to Login Page");
+        test.info("Navigating to Login Page");
         page.navigate("https://careers.justeattakeaway.com/global/en/home");
 
         // Click on the search bar ("Search for Job Title")
         careerHomePage.clickCareerHomeSearchBar();
 
         // Click on Option Sales
+        test.info("Select 'Sales' among Job Categories");
         careerHomePage.clickCareerHomeSearchDropdown_Sales();
 
         //  Scroll to label: "Refine your search"
         careerFilterPage.scrollToCareerFilterRefineYourSearchLabel();
 
         // Check if the Sales Checkbox is checked :
+        test.info("Verifying Category 'Sales' is selected");
         Assert.assertTrue(
                 careerFilterPage.isCareerFilterSelectCategory_SalesChecked());
 
@@ -37,10 +39,12 @@ public class JobCategorySearchTest extends BaseTest {
        int labelCount = careerFilterPage.getCareerSearchLabelResultCount();
        int actualJobCount = careerFilterPage.getAllJobs().size();
 
-        //System.out.println("Job Category Search Result: " + labelCount + " Job Count: " + actualJobCount);
 
         // Check if the number of jobs matches that provided in the list
+        test.info("Verifying 'Sales' results number is matching");
         Assert.assertEquals(labelCount, actualJobCount);
+
+        test.pass("Verified 'Sales' results number is matching");
 
         // Select Country Filter
         careerFilterPage.clickCareerFilterCountry();
@@ -50,6 +54,7 @@ public class JobCategorySearchTest extends BaseTest {
         int initialCount = careerFilterPage.getCareerSearchLabelResultCount();
 
         // Filter for Germany
+        test.info("Refining search from the left panel to the Country 'Germany'");
         careerFilterPage.clickCareerFilterCountry_Germany();
 
 
@@ -62,6 +67,8 @@ public class JobCategorySearchTest extends BaseTest {
 
 
         // Verify if Germany Search result number is matching and Category is Sales for all
+        test.info("Verifying the number of the search results is matching");
+
         int categoryLabelCount = careerFilterPage.getCareerSearchLabelResultCount();
         System.out.println("This is the count from the label "+categoryLabelCount);
 
@@ -71,14 +78,18 @@ public class JobCategorySearchTest extends BaseTest {
         // Actual check here
         Assert.assertEquals(categoryLabelCount, salesJobCategory.size());
 
+        test.pass("Verified the number of the search results is matching");
 
 
 
         // Correctly checks that every returned result contains “Sales”
+        test.info("Verifying the search results category is 'Sales' on all results");
         for (String category :salesJobCategory ) {
             Assert.assertTrue( category.contains("Sales"));
         }
         //page.pause();
+
+        test.info("Verified the search results category is 'Sales' on all results");
 
     }
 

@@ -119,17 +119,6 @@ public class CareerFilterPage {
 
     }
 
-/*
-    // Extract the total number from the counter text
-    public int getCareerSearchLabelResultCount() {
-        String text = careerSearchLabelResultCount.innerText();
-        //System.out.println(text);
-        return Integer.parseInt(text);
-    }
-
- */
-    // ... inside CareerFilterPage.java ...
-
     public List<String> getAllLocations() {
         // Ensure the results are visible before starting to scrape/paginate
         careerSearchJobLocationResult.first().waitFor();

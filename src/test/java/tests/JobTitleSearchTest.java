@@ -19,15 +19,18 @@ public class JobTitleSearchTest extends BaseTest {
         CareerFilterPage careerFilterPage = new CareerFilterPage(page);
 
 
-        //test.info("Navigating to Login Page");
+        test.info("Navigating to Login Page");
         page.navigate("https://careers.justeattakeaway.com/global/en/home");
 
 
-        //test.info("Entering Credentials");
+        test.info("Entering the search term : 'Test'");
         careerHomePage.addSearchValue("Test");
 
-        //test.info("Submitting Login Form");
+        test.info("Submitting search query");
         careerHomePage.clickCareerPageSearchButton();
+
+
+        test.pass("Verifying that the search contains results from multiple locations");
 
         List<String> locations = careerFilterPage.getAllLocations();
         Set<String> uniqueLocations = new HashSet<>(locations);
@@ -35,12 +38,15 @@ public class JobTitleSearchTest extends BaseTest {
         System.out.println(uniqueLocations);
 
 
-        Assert.assertTrue(locations.size() > 1
+        Assert.assertTrue(uniqueLocations.size() > 1
         );
+        test.pass("Verified that the search contains results from multiple locations("+uniqueLocations.size()+")");
+
+
+        test.info("Verifying the search results’ location is the Netherlands only");
 
         // Capture the count BEFORE applying the filter
         int initialCount = careerFilterPage.getCareerSearchLabelResultCount();
-
 
         // Filter results for Country: Netherlands
         careerFilterPage.clickCareerFilterCountry();
@@ -65,7 +71,7 @@ public class JobTitleSearchTest extends BaseTest {
                     "Location is in Netherlands: " + location
             );
         }
-
+        test.pass("Verified the search results’ location is the Netherlands only");
     }
 
 }
