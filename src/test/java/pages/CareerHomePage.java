@@ -51,7 +51,7 @@ public class CareerHomePage {
 
     public void clickCareerHomeSearchBar() {
         // Wait for network requests to complete
-        page.waitForLoadState(LoadState.NETWORKIDLE);
+        page.waitForLoadState(LoadState.NETWORKIDLE); //TODO  - Find a better way that is less expensive
         careerHomeSearchBar.click(); }
 
 
