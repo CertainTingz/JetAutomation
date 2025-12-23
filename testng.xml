@@ -1,0 +1,18 @@
+<suite name="PlaywrightSuite">
+    <test name="BasicTests">
+        <classes>
+            <class name ="tests.JobTitleSearchTest"/>
+            <class name ="tests.JobCategorySearchTest"/>
+        </classes>
+    </test>
+
+</suite>
+
+
+
+
+
+
+
+
+
