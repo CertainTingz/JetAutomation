@@ -37,7 +37,6 @@ public class CareerHomePage {
 
     }
 
-
     public boolean isCareerPageRefineLabelDisplayed() {
         careerPageRefineLabel.waitFor();
         return careerPageRefineLabel.isVisible();

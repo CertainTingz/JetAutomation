@@ -9,7 +9,6 @@ import utilities.PaginationHelper;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 public class CareerFilterPage {
 
@@ -44,9 +43,11 @@ public class CareerFilterPage {
         this.careerFilterNextPageArrow = page.locator("a[data-ph-at-id='pagination-next-link']");
         this.careerFilterPreviousPageArrow = page.locator("a[data-ph-at-id='pagination-prev-link']");
         //this.careerSearchJobLocationResult = page.locator("[data-ph-at-id='job-location'] div[role='text']");
+        //this.careerSearchJobLocationResult = page.getByTestId("job-location");
         this.careerSearchJobLocationResult = page.locator("div[data-ph-at-id='job-location'] div[role='text']");
         this.careerSearchJobList = page.locator("[data-ph-at-id='jobs-list']");
         this.careerSearchLabelResultCount = page.locator("[data-ph-at-id='search-page-top-job-count']");
+        //this.careerSearchLabelResultCount = page.getByTestId("search-page-top-job-count");
         this.careerSearchJobCategory = page.locator("[data-ph-at-id='job-category'] div[role='text']");// important
 
     }
@@ -65,37 +66,6 @@ public class CareerFilterPage {
     public void clickCareerFilterCountry_Germany() {
         careerFilterSelectCountry_Germany.check();
     }
-/*
-    // Extract unique locations from the results
-    public Set<String> getUniqueLocations() {
-
-        assertThat(careerSearchJobLocationResult.first()).isVisible();
-        // Extract locations
-        List<String> locations = careerSearchJobLocationResult.allTextContents();
-        return new HashSet<>(locations);
-    }
-
- */
-/*
-  public List<String> getAllLocations() {
-      careerSearchJobLocationResult.first().waitFor();
-   return paginator.collectTextAcrossPages(careerSearchJobLocationResult, careerFilterNextPageArrow);
-    }
-
- */
-/*
-    public List<String> getAllLocations() {
-        // Ensure we start from first page
-
-        // Wait for results to load before collecting
-        //careerSearchJobLocationResult.first().waitFor(new Locator.WaitForOptions()
-               // .setState(WaitForSelectorState.VISIBLE));
-
-        return paginator.collectTextAcrossPages(careerSearchJobLocationResult, careerFilterNextPageArrow);
-    }
-
- */
-
 
     public List<String> getAllJobs() {
         //System.out.println("getAllJobs() ran successfully");
@@ -126,19 +96,14 @@ public class CareerFilterPage {
     }
 
     public int getCareerSearchLabelResultCount() {
+
+        // TODO Optimse this.
         // Use innerText() and regex to extract only the numbers (e.g., "150 results" -> 150)
         String text = careerSearchLabelResultCount.innerText();
         String numericValue = text.replaceAll("[^0-9]", "");
         return numericValue.isEmpty() ? 0 : Integer.parseInt(numericValue);
+
     }
-
-
-   /*
-    public int getTotalJobCount() {
-      return paginator.countAcrossPages(careerSearchJobList, careerFilterNextPageArrow);
-    }
-
-    */
 
 }
 

@@ -9,6 +9,7 @@ import com.microsoft.playwright.Page;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import utilities.ExtentManager;
 import utilities.ScreenshotUtility;
 
@@ -30,7 +31,8 @@ public class BaseTest {
 
 
     @BeforeMethod
-    public void setUp(Method method) throws IOException {
+    @Parameters({"browser"})
+    public void setUp(Method method,String br) throws IOException {
 
 
         //Loading a config.properties
@@ -43,9 +45,54 @@ public class BaseTest {
         test = extent.createTest(method.getName());
 
 
-        // Playwright Setup
+
+// Playwright Setup with browser selection
         playwright = Playwright.create();
-        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setChannel("msedge"));
+
+// Selecting browser based on the one set in xml file
+        switch (br.toLowerCase()) {
+            case "chrome":
+                browser = playwright.chromium().launch(
+                        new BrowserType.LaunchOptions()
+                                .setHeadless(false)
+                                .setChannel("chrome")
+                );
+                break;
+
+            case "chromium":
+                browser = playwright.chromium().launch(
+                        new BrowserType.LaunchOptions()
+                                .setHeadless(false)
+                );
+                break;
+
+            case "firefox":
+                browser = playwright.firefox().launch(
+                        new BrowserType.LaunchOptions()
+                                .setHeadless(false)
+                );
+                break;
+
+            case "safari":
+                browser = playwright.webkit().launch(
+                        new BrowserType.LaunchOptions()
+                                .setHeadless(false)
+                );
+                break;
+
+            case "edge":
+                browser = playwright.chromium().launch(
+                        new BrowserType.LaunchOptions()
+                                .setHeadless(false)
+                                .setChannel("msedge")
+                );
+                break;
+
+            default:
+                test.fail("Invalid browser name: " + br);
+                playwright.close();
+                return;
+        }
 
         page = browser.newPage();
 

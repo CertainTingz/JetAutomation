@@ -44,7 +44,7 @@ public class JobCategorySearchTest extends BaseTest {
         test.info("Verifying 'Sales' results number is matching");
         Assert.assertEquals(labelCount, actualJobCount);
 
-        test.pass("Verified 'Sales' results number is matching");
+        test.pass("Verified 'Sales' results number is matching. Count on Label: "+labelCount+", Count in DOM Element: "+actualJobCount+".");
 
         // Select Country Filter
         careerFilterPage.clickCareerFilterCountry();
@@ -66,7 +66,7 @@ public class JobCategorySearchTest extends BaseTest {
 
 
 
-        // Verify if Germany Search result number is matching and Category is Sales for all
+        // Verify if Germany Search result number is matching and Category is Sales for all entries.
         test.info("Verifying the number of the search results is matching");
 
         int categoryLabelCount = careerFilterPage.getCareerSearchLabelResultCount();
@@ -78,8 +78,7 @@ public class JobCategorySearchTest extends BaseTest {
         // Actual check here
         Assert.assertEquals(categoryLabelCount, salesJobCategory.size());
 
-        test.pass("Verified the number of the search results is matching");
-
+        test.pass("Verified the number of the search results is matching. Count on Label: "+categoryLabelCount+", Count in DOM Element: "+salesJobCategory.size()+".");
 
 
         // Correctly checks that every returned result contains “Sales”
@@ -89,7 +88,7 @@ public class JobCategorySearchTest extends BaseTest {
         }
         //page.pause();
 
-        test.info("Verified the search results category is 'Sales' on all results");
+        test.pass("Verified the search results category is 'Sales' on all results");
 
     }
 
