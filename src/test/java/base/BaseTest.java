@@ -12,7 +12,11 @@ import org.testng.annotations.BeforeMethod;
 import utilities.ExtentManager;
 import utilities.ScreenshotUtility;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.Properties;
 
 
 public class BaseTest {
@@ -22,10 +26,17 @@ public class BaseTest {
     protected Page page;
     protected ExtentReports extent;
     protected ExtentTest test;
+    protected Properties prop;
 
 
     @BeforeMethod
-    public void setUp(Method method) {
+    public void setUp(Method method) throws IOException {
+
+
+        //Loading a config.properties
+        FileReader file = new FileReader("./src//test//resources//config.properties");
+        prop = new Properties();
+        prop.load(file);
 
         //Reporting
         extent = ExtentManager.getInstance();
@@ -34,7 +45,7 @@ public class BaseTest {
 
         // Playwright Setup
         playwright = Playwright.create();
-        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(true).setChannel("msedge"));
+        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setChannel("msedge"));
 
         page = browser.newPage();
 

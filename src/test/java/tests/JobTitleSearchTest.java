@@ -19,12 +19,12 @@ public class JobTitleSearchTest extends BaseTest {
         CareerFilterPage careerFilterPage = new CareerFilterPage(page);
 
 
-        test.info("Navigating to Login Page");
-        page.navigate("https://careers.justeattakeaway.com/global/en/home");
+        test.info("Navigating to Landing Page");
+        page.navigate(prop.getProperty("webURL"));
 
 
         test.info("Entering the search term : 'Test'");
-        careerHomePage.addSearchValue("Test");
+        careerHomePage.addSearchValue(prop.getProperty("jobTitle"));
 
         test.info("Submitting search query");
         careerHomePage.clickCareerPageSearchButton();
