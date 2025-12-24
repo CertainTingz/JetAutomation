@@ -17,8 +17,8 @@ public class JobCategorySearchTest extends BaseTest {
         CareerHomePage careerHomePage = new CareerHomePage(page);
         CareerFilterPage careerFilterPage = new CareerFilterPage(page);
 
-        test.info("Navigating to Login Page");
-        page.navigate("https://careers.justeattakeaway.com/global/en/home");
+        test.info("Navigating to Landing Page");
+        page.navigate(prop.getProperty("webURL"));
 
         // Click on the search bar ("Search for Job Title")
         careerHomePage.clickCareerHomeSearchBar();
