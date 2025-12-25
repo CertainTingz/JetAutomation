@@ -1,12 +1,13 @@
-<suite name="PlaywrightSuite">
+<suite name="PlaywrightSuite" thread-count="5" parallel="tests">
     <test name="BasicTests">
+        <parameter name="browser" value="edge"/>
         <classes>
             <class name ="tests.JobTitleSearchTest"/>
-            <class name ="tests.JobCategorySearchTest"/>
-        </classes>
-    </test>
+           <class name ="tests.JobCategorySearchTest"/>
+          </classes>
+      </test>
 
-</suite>
+  </suite>
 
 
 

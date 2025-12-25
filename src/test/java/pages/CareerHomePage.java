@@ -14,6 +14,7 @@ public class CareerHomePage {
     private final Locator careerHomeSearchBar;
     private final Locator careerPageRefineLabel;
     private final Locator careerPageSearchDropdown_Sales;
+    private final Locator careerPageCookieButton;
 
 
 
@@ -25,6 +26,7 @@ public class CareerHomePage {
         this.careerHomeSearchBar = page.getByRole(AriaRole.COMBOBOX, new Page.GetByRoleOptions().setName("Search for job title"));
         this.careerPageRefineLabel = page.getByRole(AriaRole.HEADING, new Page.GetByRoleOptions().setName("Refine your search"));
         this.careerPageSearchDropdown_Sales = page.getByLabel("Job Categories").getByText("Sales");
+        this.careerPageCookieButton = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Accept all"));
     }
 
     public void addSearchValue(String searchValue) {
@@ -32,16 +34,17 @@ public class CareerHomePage {
     }
 
     public void clickCareerPageSearchButton() {
-        System.out.println("clickCareerPageSearchButton");
+        //System.out.println("clickCareerPageSearchButton");
         careerHomeSearchButton.click();
 
     }
 
-    public boolean isCareerPageRefineLabelDisplayed() {
-        careerPageRefineLabel.waitFor();
-        return careerPageRefineLabel.isVisible();
+    public void clickCareerPageCookieButton() {
+        //System.out.println("clickCareerPageSearchButton");
+        careerPageCookieButton.click();
 
     }
+
 
     public void clickCareerHomeSearchDropdown_Sales(){
         careerPageSearchDropdown_Sales.click();
@@ -49,8 +52,6 @@ public class CareerHomePage {
     }
 
     public void clickCareerHomeSearchBar() {
-        // Wait for network requests to complete
-        page.waitForLoadState(LoadState.NETWORKIDLE); //TODO  - Find a better way that is less expensive
         careerHomeSearchBar.click(); }
 
 

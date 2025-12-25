@@ -2,9 +2,6 @@ package utilities;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
-import com.microsoft.playwright.options.LoadState;
-import com.microsoft.playwright.options.WaitForSelectorState;
-
 import java.util.ArrayList;
 import java.util.List;
 

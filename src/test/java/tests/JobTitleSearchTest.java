@@ -18,57 +18,71 @@ public class JobTitleSearchTest extends BaseTest {
         CareerHomePage careerHomePage = new CareerHomePage(page);
         CareerFilterPage careerFilterPage = new CareerFilterPage(page);
 
-
+        // Navigating to Landing page
         test.info("Navigating to Landing Page");
         page.navigate(prop.getProperty("webURL"));
 
+        // Accept cookies
+        careerHomePage.clickCareerPageCookieButton();
 
+        // Entering the search term
         test.info("Entering the search term : 'Test'");
         careerHomePage.addSearchValue(prop.getProperty("jobTitle"));
 
+        // Submitting the search term
         test.info("Submitting search query");
         careerHomePage.clickCareerPageSearchButton();
 
+        // Scroll to Filtering Object
+        careerFilterPage.scrollToCareerFilterRefineYourSearchLabel();
 
-        test.pass("Verifying that the search contains results from multiple locations");
-
+        // Verifying if results contain results from multiple location
+        test.info("Verifying that the search contains results from multiple locations");
         List<String> locations = careerFilterPage.getAllLocations();
         Set<String> uniqueLocations = new HashSet<>(locations);
-        System.out.println("locations: " + uniqueLocations.size());
+        System.out.println("locations count: " + uniqueLocations.size());
         System.out.println(uniqueLocations);
 
 
-        Assert.assertTrue(uniqueLocations.size() > 1
-        );
-        test.pass("Verified that the search contains results from multiple locations("+uniqueLocations.size()+")");
+        Assert.assertTrue(uniqueLocations.size() > 1,
+                "Expected multiple locations but found: " + uniqueLocations.size());
+
+        test.pass("Verified that the search contains results from multiple unique locations("+uniqueLocations.size()+")");
 
 
         test.info("Verifying the search results’ location is the Netherlands only");
 
-        // Capture the count BEFORE applying the filter
-        int initialCount = careerFilterPage.getCareerSearchLabelResultCount();
 
-        // Filter results for Country: Netherlands
         careerFilterPage.clickCareerFilterCountry();
         careerFilterPage.clickCareerFilterCountry_Netherlands();
 
-        // We wait until the count displayed on the page is different from the initial count
-        page.waitForCondition(() -> {
-            int currentCount = careerFilterPage.getCareerSearchLabelResultCount();
-            return currentCount != initialCount;
-        });
+        careerFilterPage.verifyLoader();
 
 
-        List<String> netherlandsLocation = careerFilterPage.getAllLocations();
-        System.out.println("Netherlands locations only: " + netherlandsLocation.size());
-        System.out.println(netherlandsLocation);
+        // Collecting Netherlands jobs information.
+        List<String> netherlandsJobs = careerFilterPage.getAllLocations();
+
+        int netherlandsJobsLabelCount = careerFilterPage.getCareerSearchLabelResultCount();
+        int netherlandsJobsDOMCount = netherlandsJobs.size();
+
+
+        // Verifying if the Netherlands jobs count match before checking if results are for the Netherlands only
+        test.info("Verifying first if the Netherlands jobs count match before checking if results are for the Netherlands only");
+        Assert.assertEquals(netherlandsJobsLabelCount, netherlandsJobs.size());
+        test.pass("Verified the count of the Netherlands filter search results is matching. Count on Label: "+netherlandsJobsLabelCount+", Count in DOM Element: "+netherlandsJobsDOMCount+".");
+
+
+
+
+        //System.out.println("Netherlands locations only: " + netherlandsJobs.size());
+        //System.out.println(netherlandsJobs);
 
 
         // Correctly checks that every returned result contains “Netherlands.”
-        for (String location : netherlandsLocation) {
+        for (String location : netherlandsJobs) {
             Assert.assertTrue(
                     location.contains("Netherlands"),
-                    "Location is in Netherlands: " + location
+                    "Expected Netherlands location but got: " + location
             );
         }
         test.pass("Verified the search results’ location is the Netherlands only");

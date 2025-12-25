@@ -12,8 +12,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import utilities.ExtentManager;
 import utilities.ScreenshotUtility;
-
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -49,7 +47,7 @@ public class BaseTest {
 // Playwright Setup with browser selection
         playwright = Playwright.create();
 
-// Selecting browser based on the one set in xml file
+// Selecting a browser based on the one set in crossBrowserTesting XML file
         switch (br.toLowerCase()) {
             case "chrome":
                 browser = playwright.chromium().launch(
@@ -120,7 +118,9 @@ public class BaseTest {
         }
         extent.flush();
 
-    if(browser != null) browser.close();
-    if(playwright != null) playwright.close();
+        if(page != null) page.close();
+        if(browser != null) browser.close();
+        if(playwright != null) playwright.close();
+
     }
 }

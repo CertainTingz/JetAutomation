@@ -27,6 +27,7 @@ public class CareerFilterPage {
     private final Locator careerFilterNextPageArrow;
     private final Locator careerFilterPreviousPageArrow;
     private final Locator careerSearchJobCategory;
+    private final Locator careerFilterSpinner;
 
 
     public CareerFilterPage(Page page) {
@@ -45,10 +46,12 @@ public class CareerFilterPage {
         //this.careerSearchJobLocationResult = page.locator("[data-ph-at-id='job-location'] div[role='text']");
         //this.careerSearchJobLocationResult = page.getByTestId("job-location");
         this.careerSearchJobLocationResult = page.locator("div[data-ph-at-id='job-location'] div[role='text']");
-        this.careerSearchJobList = page.locator("[data-ph-at-id='jobs-list']");
+        //this.careerSearchJobList = page.locator("[data-ph-at-id='jobs-list']");
+        this.careerSearchJobList = page.locator("div[data-ph-at-id='jobs-list']");
         this.careerSearchLabelResultCount = page.locator("[data-ph-at-id='search-page-top-job-count']");
         //this.careerSearchLabelResultCount = page.getByTestId("search-page-top-job-count");
         this.careerSearchJobCategory = page.locator("[data-ph-at-id='job-category'] div[role='text']");// important
+        this.careerFilterSpinner = page.locator(".phw-spinner-border.phw-primary");
 
     }
 
@@ -84,7 +87,7 @@ public class CareerFilterPage {
     }
 
     public boolean isCareerFilterSelectCategory_SalesChecked() {
-        careerFilterSelectCategory_Sales.waitFor(); // Necessary for isChecked().
+        careerFilterSelectCategory_Sales.waitFor(); // waitFor() Necessary for isChecked().
         return careerFilterSelectCategory_Sales.isChecked();
 
     }
@@ -92,6 +95,12 @@ public class CareerFilterPage {
     public List<String> getAllLocations() {
         // Ensure the results are visible before starting to scrape/paginate
         careerSearchJobLocationResult.first().waitFor();
+        if (careerFilterSpinner.isVisible()) {
+            careerFilterSpinner.waitFor(new Locator.WaitForOptions()
+                    .setState(WaitForSelectorState.DETACHED)
+            );
+        }
+
         return paginator.collectTextAcrossPages(careerSearchJobLocationResult, careerFilterNextPageArrow);
     }
 
@@ -103,6 +112,13 @@ public class CareerFilterPage {
         String numericValue = text.replaceAll("[^0-9]", "");
         return numericValue.isEmpty() ? 0 : Integer.parseInt(numericValue);
 
+    }
+
+    public void verifyLoader() {
+        // Wait for the spinner to disappear before reading results
+
+        careerFilterSpinner.waitFor(new Locator.WaitForOptions()
+                .setState(WaitForSelectorState.HIDDEN));
     }
 
 }
