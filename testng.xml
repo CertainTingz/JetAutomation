@@ -2,8 +2,8 @@
     <test name="BasicTests">
         <parameter name="browser" value="edge"/>
         <classes>
-            <class name ="tests.JobTitleSearchTest"/>
-           <class name ="tests.JobCategorySearchTest"/>
+         <class name ="tests.JobTitleSearchTest"/>
+          <class name ="tests.JobCategorySearchTest"/>
           </classes>
       </test>
 

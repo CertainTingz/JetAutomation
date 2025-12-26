@@ -3,7 +3,7 @@ package tests;
 import base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.CareerFilterPage;
+import pages.CareerFilterSection;
 import pages.CareerHomePage;
 
 import java.util.HashSet;
@@ -16,7 +16,7 @@ public class JobTitleSearchTest extends BaseTest {
     public void searchJobTitleTest() {
 
         CareerHomePage careerHomePage = new CareerHomePage(page);
-        CareerFilterPage careerFilterPage = new CareerFilterPage(page);
+        CareerFilterSection careerFilterSection = new CareerFilterSection(page);
 
         // Navigating to Landing page
         test.info("Navigating to Landing Page");
@@ -34,44 +34,39 @@ public class JobTitleSearchTest extends BaseTest {
         careerHomePage.clickCareerPageSearchButton();
 
         // Scroll to Filtering Object
-        careerFilterPage.scrollToCareerFilterRefineYourSearchLabel();
+        careerFilterSection.scrollToCareerFilterRefineYourSearchLabel();
 
         // Verifying if results contain results from multiple location
         test.info("Verifying that the search contains results from multiple locations");
-        List<String> locations = careerFilterPage.getAllLocations();
+        List<String> locations = careerFilterSection.getAllLocations();
         Set<String> uniqueLocations = new HashSet<>(locations);
-        System.out.println("locations count: " + uniqueLocations.size());
-        System.out.println(uniqueLocations);
 
 
         Assert.assertTrue(uniqueLocations.size() > 1,
                 "Expected multiple locations but found: " + uniqueLocations.size());
 
-        test.pass("Verified that the search contains results from multiple unique locations("+uniqueLocations.size()+")");
+        test.pass("Verified that the search contains results from multiple unique locations(" + uniqueLocations.size() + ")");
 
 
         test.info("Verifying the search results’ location is the Netherlands only");
+        careerFilterSection.clickCareerFilterCountry();
+        careerFilterSection.clickCareerFilterCountry_Netherlands();
 
-
-        careerFilterPage.clickCareerFilterCountry();
-        careerFilterPage.clickCareerFilterCountry_Netherlands();
-
-        careerFilterPage.verifyLoader();
+        careerFilterSection.waitForLoadToComplete();
 
 
         // Collecting Netherlands jobs information.
-        List<String> netherlandsJobs = careerFilterPage.getAllLocations();
+        List<String> netherlandsJobs = careerFilterSection.getAllLocations();
+        //System.out.println("This is the Netherlands jobs " + netherlandsJobs);
 
-        int netherlandsJobsLabelCount = careerFilterPage.getCareerSearchLabelResultCount();
+        int netherlandsJobsLabelCount = careerFilterSection.getLabelResultCount();
         int netherlandsJobsDOMCount = netherlandsJobs.size();
 
 
         // Verifying if the Netherlands jobs count match before checking if results are for the Netherlands only
         test.info("Verifying first if the Netherlands jobs count match before checking if results are for the Netherlands only");
-        Assert.assertEquals(netherlandsJobsLabelCount, netherlandsJobs.size());
-        test.pass("Verified the count of the Netherlands filter search results is matching. Count on Label: "+netherlandsJobsLabelCount+", Count in DOM Element: "+netherlandsJobsDOMCount+".");
-
-
+        Assert.assertEquals(netherlandsJobsDOMCount, netherlandsJobsLabelCount);
+        test.pass("Verified the count of the Netherlands filter search results is matching. Count on Label: " + netherlandsJobsLabelCount + ", Count in DOM Element: " + netherlandsJobsDOMCount + ".");
 
 
         //System.out.println("Netherlands locations only: " + netherlandsJobs.size());

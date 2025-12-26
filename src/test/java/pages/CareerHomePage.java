@@ -3,18 +3,17 @@ package pages;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
-import com.microsoft.playwright.options.LoadState;
 
 public class CareerHomePage {
 
     private final Page page;
 
     // Declaring locators
-    private final Locator careerHomeSearchButton;
-    private final Locator careerHomeSearchBar;
-    private final Locator careerPageRefineLabel;
-    private final Locator careerPageSearchDropdown_Sales;
-    private final Locator careerPageCookieButton;
+    private final Locator buttonSearch;
+    private final Locator textBoxSearch;
+    //private final Locator labelRefineYourSearch;
+    private final Locator dropdownOptionSales;
+    private final Locator buttonAcceptCookies;
 
 
 
@@ -22,38 +21,34 @@ public class CareerHomePage {
     public CareerHomePage(Page page) {
         this.page = page;
 
-        this.careerHomeSearchButton = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Search").setExact(true));
-        this.careerHomeSearchBar = page.getByRole(AriaRole.COMBOBOX, new Page.GetByRoleOptions().setName("Search for job title"));
-        this.careerPageRefineLabel = page.getByRole(AriaRole.HEADING, new Page.GetByRoleOptions().setName("Refine your search"));
-        this.careerPageSearchDropdown_Sales = page.getByLabel("Job Categories").getByText("Sales");
-        this.careerPageCookieButton = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Accept all"));
+        this.buttonSearch = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Search").setExact(true));
+        this.textBoxSearch = page.getByRole(AriaRole.COMBOBOX, new Page.GetByRoleOptions().setName("Search for job title"));
+        this.dropdownOptionSales = page.getByLabel("Job Categories").getByText("Sales");
+        this.buttonAcceptCookies = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Accept all"));
     }
 
     public void addSearchValue(String searchValue) {
-        careerHomeSearchBar.fill(searchValue);
+        textBoxSearch.fill(searchValue);
     }
 
     public void clickCareerPageSearchButton() {
         //System.out.println("clickCareerPageSearchButton");
-        careerHomeSearchButton.click();
+        buttonSearch.click();
 
     }
 
     public void clickCareerPageCookieButton() {
-        //System.out.println("clickCareerPageSearchButton");
-        careerPageCookieButton.click();
-
+        buttonAcceptCookies.click();
     }
-
 
     public void clickCareerHomeSearchDropdown_Sales(){
-        careerPageSearchDropdown_Sales.click();
+        dropdownOptionSales.click();
 
     }
 
-    public void clickCareerHomeSearchBar() {
-        careerHomeSearchBar.click(); }
-
-
+    public void clickTextBoxSearch() {
+        textBoxSearch.click();
+    }
 
 }
+
