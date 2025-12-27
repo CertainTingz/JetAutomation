@@ -11,7 +11,6 @@ public class CareerHomePage {
     // Declaring locators
     private final Locator buttonSearch;
     private final Locator textBoxSearch;
-    //private final Locator labelRefineYourSearch;
     private final Locator dropdownOptionSales;
     private final Locator buttonAcceptCookies;
 
@@ -31,17 +30,16 @@ public class CareerHomePage {
         textBoxSearch.fill(searchValue);
     }
 
-    public void clickCareerPageSearchButton() {
-        //System.out.println("clickCareerPageSearchButton");
+    public void clickButtonSearch() {
         buttonSearch.click();
 
     }
 
-    public void clickCareerPageCookieButton() {
+    public void clickButtonAcceptCookies() {
         buttonAcceptCookies.click();
     }
 
-    public void clickCareerHomeSearchDropdown_Sales(){
+    public void clickDropdownOptionSales(){
         dropdownOptionSales.click();
 
     }

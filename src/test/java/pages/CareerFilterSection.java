@@ -26,7 +26,7 @@ public class CareerFilterSection {
     private final Locator nextPageArrow;
     private final Locator jobCategory;
     private final Locator refreshLoader;
-    private final Locator jobList;
+    private final Locator jobId;
 
 
 
@@ -46,52 +46,39 @@ public class CareerFilterSection {
         this.labelResultCount = page.locator("[data-ph-at-id='search-page-top-job-count']");
         this.jobCategory = page.locator("[role='text'][data-ph-at-id='job-category']");
         this.refreshLoader = page.locator(".phw-spinner-border.phw-primary");
-        this.jobList = page.locator("[data-ph-at-id='job-list']");
+        this.jobId = page.locator("[data-ph-at-job-id-text]");
 
     }
 
 
-    public void clickCareerFilterCountry() {
+    public void clickButtonCountry() {
         //buttonCountry.scrollIntoViewIfNeeded();
         buttonCountry.click();
-        //System.out.println("Clicked Country"+1);
+
 
     }
 
-    public void clickCareerFilterCountry_Netherlands() {
+    public void clickCheckBoxCountry_Netherlands() {
         checkBoxCountry_Netherlands.check();
 
     }
 
-    public void clickCareerFilterCountry_Germany() {
-        //checkBoxCountry_Germany.scrollIntoViewIfNeeded();
+    public void clickCheckBoxCountry_Germany() {
+
         checkBoxCountry_Germany.check();
     }
 
     public List<String> getAllJobCategories() {
         jobCategory.first().waitFor();
-        //waitForLoadToComplete();
-        return paginator.collectTextAcrossPages(jobCategory, nextPageArrow);
+        return paginator.collectJobDataAcrossPages(jobCategory,jobId, nextPageArrow);
     }
 
 
     public List<String> getAllLocations() {
         // Ensure the results are visible before action
-        jobLocation.first().waitFor();
-        //waitForLoadToComplete();
-        return paginator.collectTextAcrossPages(jobLocation, nextPageArrow);
+        //jobLocation.first().waitFor();
+        return paginator.collectJobDataAcrossPages(jobLocation,jobId, nextPageArrow);
     }
-
-
-//    // Trial fix
-//    public List<String> getAllJobCategoriesTrial() {
-//        jobCategory.first().waitFor();
-//        return paginator.collectJobCategoriesAcrossPages(jobCategory, nextPageArrow);
-//    }
-
-
-
-
 
 
     public void scrollToCareerFilterRefineYourSearchLabel() {
@@ -100,7 +87,7 @@ public class CareerFilterSection {
     }
 
     public boolean isCareerFilterSelectCategory_SalesChecked() {
-        checkBoxCategory_Sales.waitFor(); // waitFor() Necessary for isChecked().
+        //checkBoxCategory_Sales.waitFor(); // waitFor() Necessary for isChecked().
         return checkBoxCategory_Sales.isChecked();
 
     }
@@ -114,21 +101,18 @@ public class CareerFilterSection {
 
     public void waitForLoadToComplete() {
 
-        System.out.println("Spinner is visible? :" + refreshLoader.isVisible());
-        if (refreshLoader.isVisible()) {
-            refreshLoader.waitFor(
-                    new Locator.WaitForOptions()
-                            .setState(WaitForSelectorState.HIDDEN)
-            );
-        }
+        boolean appeared = refreshLoader.isVisible(); // for logging
 
+        refreshLoader.waitFor(
+                new Locator.WaitForOptions()
+                        .setState(WaitForSelectorState.HIDDEN)
+        );
+//        if (appeared) {
+//            System.out.println("Loader appeared and disappeared");
+//        }
 
-
-
-        // Wait for the spinner to disappear before reading results
-        //refreshLoader.waitFor(new Locator.WaitForOptions()
-           //     .setState(WaitForSelectorState.HIDDEN));
     }
+
 
 }
 

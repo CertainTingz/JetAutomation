@@ -67,14 +67,14 @@ public class BaseTest {
             case "firefox":
                 browser = playwright.firefox().launch(
                         new BrowserType.LaunchOptions()
-                                //.setHeadless(false)
+                                .setHeadless(false)
                 );
                 break;
 
             case "safari":
                 browser = playwright.webkit().launch(
                         new BrowserType.LaunchOptions()
-                                .setHeadless(false)
+                                .setHeadless(true)
                 );
                 break;
 

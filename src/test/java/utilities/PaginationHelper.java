@@ -15,13 +15,15 @@ public class PaginationHelper {
         this.page = page;
     }
 
-    public List<String> collectTextAcrossPages(Locator itemLocator, Locator nextArrow) {
+    public List<String> collectJobDataAcrossPages(Locator itemLocator, Locator itemId, Locator nextArrow) {
         List<String> results = new ArrayList<>();
 
         while (true) {
 
             // Wait until at least one item is attached (not visible!)
-            page.waitForCondition(() -> itemLocator.count() > 0);
+            itemLocator.last().waitFor(new Locator.WaitForOptions()
+                    .setState(WaitForSelectorState.VISIBLE));
+
 
             // Collect current page
             results.addAll(itemLocator.allInnerTexts());
@@ -31,13 +33,17 @@ public class PaginationHelper {
                 break;
             }
 
+            String lastJobId = itemId.first().getAttribute("data-ph-at-job-id-text");
+            System.out.println("this is the jobID: " +lastJobId);
+
             nextArrow.click();
+            itemLocator.last().scrollIntoViewIfNeeded(); // making sure new content is in view
 
-            // Now wait for new items to appear
-           //itemLocator.first().waitFor();
-
-            itemLocator.last().waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.VISIBLE));
-
+            // Wait until last job ID changes (new page loaded)
+            page.waitForCondition(() -> {
+                String newLastJobId = itemId.last().getAttribute("data-ph-at-job-id-text");
+                return newLastJobId != null && !newLastJobId.equals(lastJobId);
+            });
         }
 
         return results;

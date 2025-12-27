@@ -1,6 +1,6 @@
 <suite name="PlaywrightSuite" thread-count="5" parallel="tests">
     <test name="BasicTests">
-        <parameter name="browser" value="edge"/>
+        <parameter name="browser" value="firefox"/>
         <classes>
          <class name ="tests.JobTitleSearchTest"/>
           <class name ="tests.JobCategorySearchTest"/>

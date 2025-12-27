@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+
 public class JobTitleSearchTest extends BaseTest {
 
     @Test
@@ -23,7 +24,7 @@ public class JobTitleSearchTest extends BaseTest {
         page.navigate(prop.getProperty("webURL"));
 
         // Accept cookies
-        careerHomePage.clickCareerPageCookieButton();
+        careerHomePage.clickButtonAcceptCookies();
 
         // Entering the search term
         test.info("Entering the search term : 'Test'");
@@ -31,10 +32,8 @@ public class JobTitleSearchTest extends BaseTest {
 
         // Submitting the search term
         test.info("Submitting search query");
-        careerHomePage.clickCareerPageSearchButton();
+        careerHomePage.clickButtonSearch();
 
-        // Scroll to Filtering Object
-        careerFilterSection.scrollToCareerFilterRefineYourSearchLabel();
 
         // Verifying if results contain results from multiple location
         test.info("Verifying that the search contains results from multiple locations");
@@ -49,15 +48,15 @@ public class JobTitleSearchTest extends BaseTest {
 
 
         test.info("Verifying the search results’ location is the Netherlands only");
-        careerFilterSection.clickCareerFilterCountry();
-        careerFilterSection.clickCareerFilterCountry_Netherlands();
+        careerFilterSection.clickButtonCountry();
+        careerFilterSection.clickCheckBoxCountry_Netherlands();
 
         careerFilterSection.waitForLoadToComplete();
 
 
         // Collecting Netherlands jobs information.
         List<String> netherlandsJobs = careerFilterSection.getAllLocations();
-        //System.out.println("This is the Netherlands jobs " + netherlandsJobs);
+
 
         int netherlandsJobsLabelCount = careerFilterSection.getLabelResultCount();
         int netherlandsJobsDOMCount = netherlandsJobs.size();
@@ -67,10 +66,6 @@ public class JobTitleSearchTest extends BaseTest {
         test.info("Verifying first if the Netherlands jobs count match before checking if results are for the Netherlands only");
         Assert.assertEquals(netherlandsJobsDOMCount, netherlandsJobsLabelCount);
         test.pass("Verified the count of the Netherlands filter search results is matching. Count on Label: " + netherlandsJobsLabelCount + ", Count in DOM Element: " + netherlandsJobsDOMCount + ".");
-
-
-        //System.out.println("Netherlands locations only: " + netherlandsJobs.size());
-        //System.out.println(netherlandsJobs);
 
 
         // Correctly checks that every returned result contains “Netherlands.”

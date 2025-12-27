@@ -21,16 +21,15 @@ public class JobCategorySearchTest extends BaseTest {
         page.navigate(prop.getProperty("webURL"));
 
         // Accept cookies
-        careerHomePage.clickCareerPageCookieButton();
+        careerHomePage.clickButtonAcceptCookies();
 
 
         // Click on the search bar ("Search for Job Title")
         careerHomePage.clickTextBoxSearch();
-        //page.pause();
 
-        // Click on Option Sales
-        test.info("Select 'Sales' among Job Categories");
-        careerHomePage.clickCareerHomeSearchDropdown_Sales();
+        // Click on Option: Sales
+        test.info("Selecting 'Sales' among Job Categories");
+        careerHomePage.clickDropdownOptionSales();
 
         //  Scroll to label: "Refine your search"
         careerFilterSection.scrollToCareerFilterRefineYourSearchLabel();
@@ -46,14 +45,14 @@ public class JobCategorySearchTest extends BaseTest {
         int labelCount = careerFilterSection.getLabelResultCount();
         int jobCountInDOM = careerFilterSection.getAllJobCategories().size();
 
-        careerFilterSection.clickCareerFilterCountry();
+        careerFilterSection.clickButtonCountry();
 
 
         // Check if the number of jobs matches that provided in the list
         test.info("Verifying 'Sales' results number is matching");
         Assert.assertEquals(jobCountInDOM, labelCount);
 
-        test.pass("Verified 'Sales' results number is matching. Count on Label: " + labelCount + ", Count in DOM Element: " + jobCountInDOM + ".");
+        test.pass("Verified 'Sales' results numbers are matching. Count on Label: " + labelCount + ", Count in DOM Element: " + jobCountInDOM + ".");
 
 
 
@@ -61,43 +60,30 @@ public class JobCategorySearchTest extends BaseTest {
         test.info("Refining search from the left panel to the Country 'Germany'");
 
         // Select Country Filter
-        //careerFilterSection.clickCareerFilterCountry();
-        //page.pause();
-        careerFilterSection.clickCareerFilterCountry_Germany();
-        careerFilterSection.waitForLoadToComplete();
+        careerFilterSection.clickCheckBoxCountry_Germany();
+        careerFilterSection.waitForLoadToComplete(); // Important after every filter selection
 
 
-        // Verify if Germany Search result number is matching and Category is Sales for all entries.
+        // Collecting information on Job categories
         test.info("Verifying the count of the Germany filter search results is matching");
-
         List<String> salesJobCategory = careerFilterSection.getAllJobCategories();
-
-        //System.out.println(salesJobCategory);
 
 
         // Correctly checks that every returned result contains “Sales”
         test.info("Verifying the search results category is 'Sales' on all results");
         for (String category : salesJobCategory) {
-            Assert.assertTrue(category.contains("Sales"));
-        }
+            Assert.assertTrue(category.contains("Sales"));}
 
         test.pass("Verified the search results category is 'Sales' on all results");
 
-
-
-        //System.out.println("This is the count from the DOM " + salesJobCategory.size());
-        //System.out.println("Germany list of categories "+salesJobCategory);
+        // Verifying Germany Search result count is matching
         int salesCategoriesCount = salesJobCategory.size();
         int categoryLabelCount = careerFilterSection.getLabelResultCount();
-
-        //System.out.println("This is the count from the label " + categoryLabelCount);
-
 
         // Actual check here
         Assert.assertEquals(salesCategoriesCount, categoryLabelCount);
 
         test.pass("Verified the count of the Germany filter search results is matching. Count on Label: " + categoryLabelCount + ", Count in DOM Element: " + salesCategoriesCount+ ".");
-
 
 
     }
