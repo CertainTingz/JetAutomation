@@ -1,0 +1,95 @@
+[33mcommit f2b72ede99b884cf66fd838999ca30f5a94a3a13[m[33m ([m[1;36mHEAD -> [m[1;32mtest-automation[m[33m)[m
+Author: CertainTingz <lyndonsimango@gmail.com>
+Date:   Thu Dec 25 05:16:01 2025 +0100
+
+    Implemented a method to allow filter table to complete refresh before any action is done
+
+[33mcommit 1e3b62ae43c87bd0aa7e9f6277592f5f6e806e55[m[33m ([m[1;31morigin/test-automation[m[33m)[m
+Author: CertainTingz <lyndonsimango@gmail.com>
+Date:   Wed Dec 24 19:18:18 2025 +0100
+
+    Implemented cross browser testing. Cleaned up comments in other classes.
+
+[33mcommit 1f187d55a3168cf0d02c88a076e0a457bd99febd[m
+Author: CertainTingz <lyndonsimango@gmail.com>
+Date:   Wed Dec 24 01:49:42 2025 +0100
+
+    Extended data driven scripting to the second test case
+
+[33mcommit d89c1b1feb70e2d130f07eedb5d9524822f535f8[m
+Author: CertainTingz <lyndonsimango@gmail.com>
+Date:   Wed Dec 24 01:46:53 2025 +0100
+
+    Added a config.properties in the resources folder which enables Data Driven Scripting
+
+[33mcommit e844a8cbb235cef31486d112649594f3669bc656[m
+Author: CertainTingz <lyndonsimango@gmail.com>
+Date:   Tue Dec 23 23:41:04 2025 +0100
+
+    Added tests status information (pass,info). Tests temporarily set to headless.
+
+[33mcommit 81e9cad5538d0921c4c944d38a5c2d36dda1271d[m
+Author: CertainTingz <lyndonsimango@gmail.com>
+Date:   Tue Dec 23 20:51:55 2025 +0100
+
+    Added Reporting and Screenshot functionality.
+
+[33mcommit 5f2b3a4215b06ae83d1bedd4e13026a688cac116[m
+Author: CertainTingz <lyndonsimango@gmail.com>
+Date:   Tue Dec 23 19:48:57 2025 +0100
+
+    Added a testng.xml file for organised test execution
+
+[33mcommit a03b8e19ad6b329189fc4baf4cd7831fa087766f[m
+Author: CertainTingz <lyndonsimango@gmail.com>
+Date:   Tue Dec 23 18:51:35 2025 +0100
+
+    Both test implementation complete. Improved PaginationHelper methods
+
+[33mcommit dfe31ad9172fb4c492cf882fa439981f60ea7cce[m
+Author: CertainTingz <lyndonsimango@gmail.com>
+Date:   Mon Dec 22 14:20:38 2025 +0100
+
+    Implemented PaginationHelper class. Verified count of 'Sale' search result
+
+[33mcommit 8f888b10b5b719b0c512ba120487b89ae6165955[m
+Author: CertainTingz <lyndonsimango@gmail.com>
+Date:   Mon Dec 22 00:25:31 2025 +0100
+
+    Implemented and verified 'Sales' Job Category selection.
+
+[33mcommit 40cec0970ee74c686b4db814bb54a32d35d0eca1[m
+Author: CertainTingz <lyndonsimango@gmail.com>
+Date:   Sun Dec 21 20:21:39 2025 +0100
+
+    Removed static wait.
+
+[33mcommit e166b0331c09ca4ff2fbfdc42cfbc90b71d065fa[m
+Author: CertainTingz <lyndonsimango@gmail.com>
+Date:   Sun Dec 21 17:13:32 2025 +0100
+
+    Add job search and Netherlands location filter test using POM
+
+[33mcommit 970ec82bb2e163577973e89471ebe11d6c3cf25d[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m
+Author: CertainTingz <lyndonsimango@gmail.com>
+Date:   Sat Dec 20 12:29:34 2025 +0100
+
+    Added TestNG dependancy in POM, removed IDE files from Github and added Setup and Teardown methods in BaseTest Class
+
+[33mcommit fcbaa2ec011b93a158f9ac3761773be4a7245974[m
+Author: CertainTingz <lyndonsimango@gmail.com>
+Date:   Sat Dec 20 11:37:51 2025 +0100
+
+    Removing IDE files frm repository
+
+[33mcommit 7530eff41ded554cd8c449143c32de8f46aeb48c[m
+Author: CertainTingz <lyndonsimango@gmail.com>
+Date:   Sat Dec 20 11:29:57 2025 +0100
+
+    Project structure setup + Playwright dependancy installation
+
+[33mcommit 039b74e4a78e4017d73b4ee62ae771ca9306d08e[m
+Author: CertainTingz <lyndonsimango@gmail.com>
+Date:   Sat Dec 20 11:04:35 2025 +0100
+
+    Initial Commit
