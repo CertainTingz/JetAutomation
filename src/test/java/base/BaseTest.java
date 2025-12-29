@@ -67,7 +67,7 @@ public class BaseTest {
             case "firefox":
                 browser = playwright.firefox().launch(
                         new BrowserType.LaunchOptions()
-                                .setHeadless(false)
+                                .setHeadless(true)
                 );
                 break;
 

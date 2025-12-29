@@ -129,7 +129,7 @@ public class CareerFilterSection {
     }
 
     public boolean isClearAllFiltersButtonVisible() {
-        System.out.println("is it visible: "+ clearAllButton.isVisible());
+        //System.out.println("is it visible: "+ clearAllButton.isVisible());
         return clearAllButton.isVisible();
 
     }
