@@ -12,6 +12,7 @@ public class CareerHomePage {
     private final Locator buttonSearch;
     private final Locator textBoxSearch;
     private final Locator dropdownOptionSales;
+    private final Locator dropdownOptionDataAndAnalytics;
     private final Locator buttonAcceptCookies;
 
 
@@ -23,6 +24,7 @@ public class CareerHomePage {
         this.buttonSearch = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Search").setExact(true));
         this.textBoxSearch = page.getByRole(AriaRole.COMBOBOX, new Page.GetByRoleOptions().setName("Search for job title"));
         this.dropdownOptionSales = page.getByLabel("Job Categories").getByText("Sales");
+        this.dropdownOptionDataAndAnalytics = page.getByLabel("Job Categories").getByText("Data & Analytics");
         this.buttonAcceptCookies = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Accept all"));
     }
 
@@ -41,6 +43,11 @@ public class CareerHomePage {
 
     public void clickDropdownOptionSales(){
         dropdownOptionSales.click();
+
+    }
+
+    public void clickDropdownOptionDataAndAnalytics(){
+        dropdownOptionDataAndAnalytics.click();
 
     }
 

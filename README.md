@@ -32,11 +32,12 @@ JetAutomation/
 │       └── java/
 │           ├── base/          # Base test classes and setup
 │           ├── pages/         # Page Object Model classes
-│           ├── tests/         # Test classes
+│           ├── tests/         # Test classes (2+2)
 │           └── utilities/     # Utility classes and helpers
 ├── pom.xml                    # Maven configuration
 ├── testng.xml                 # TestNG configuration
 ├── crossBrowserTesting.xml    # Cross-browser testing configuration
+├── testngExtraTests.xml       # Required tests +2 more added tests configuration    
 └── README.md
 ```
 ## Setup and Installation
@@ -54,13 +55,13 @@ mvn clean install
 
 After the Maven dependencies are installed, you need to install the Playwright browsers:
 ```
-bash
+
 mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install"
 ```
 Or alternatively, you can install browsers manually:
 
 ```
-npx playwright install
+mvn playwright:install
 ```
 
 
@@ -87,19 +88,6 @@ mvn test -DsuiteXmlFile=crossBrowserTesting.xml
 ```
 
 
-### Running Specific Test Classes
-
-```
-mvn test -Dtest=JobCategorySearchTest
-```
-
-
-### Running Tests with Parameters
-
-```
-mvn test -Dbrowser=chrome -Dheadless=false
-```
-
 
 ### Running Tests in IDE
 
@@ -112,18 +100,19 @@ mvn test -Dbrowser=chrome -Dheadless=false
 ### TestNG Configuration
 
 The project uses TestNG for test execution. Configure your test suites in:
-- `testng.xml` - Main test configuration
+- `testng.xml` - Main test configuration (Browser selection)
 - `crossBrowserTesting.xml` - Cross-browser test configuration
 
 ### Browser Configuration
 
-Tests can be run on different browsers by setting system properties:
+Tests can be run on different browsers by setting system properties in testng.xml:
 - `browser` - Specify browser (chrome, firefox, safari, edge)
 
-
+Tests can also be run on different browsers by running commands like below:
 Example:
 ```
 mvn test -Dbrowser=firefox 
+mvn test -Dbrowser=chrome
 ```
 
 
@@ -143,7 +132,7 @@ The project uses the following key dependencies:
 - **ExtentReports** - Rich HTML test reports
 - **Playwright integration** - Modern browser automation with fast execution
 
-## Test Examples
+## Tests Available 
 
 The project includes automated tests for the Just Eat Takeaway careers website:
 
@@ -152,6 +141,20 @@ The project includes automated tests for the Just Eat Takeaway careers website:
 - Search for specific job categories (e.g., Sales)
 - Filter by country (e.g., Germany)
 - Verify search results and job counts
+
+- **Job Title Search Test**
+- Tests job title search 'Test' without location 
+- Verifying that results contain multiple locations
+- Filter by country (e.g., Netherlands)
+- Verify results only have Netherlands as locations
+
+- **None Matching Job Search Test**
+- Tests job title search with a none matching title
+- Verify system handles no responses properly notifying user
+
+- **'Clear All Filters' Test**
+- Tests functionality of 'Clear All Filters Button'
+
 
 ## Reporting
 

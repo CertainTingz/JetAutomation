@@ -31,7 +31,7 @@ public class ScreenshotUtility {
 
         page.screenshot(new Page.ScreenshotOptions()
                 .setPath(absolutePath)
-                .setFullPage(true));
+                .setFullPage(false));
 
         return relativePath.replace("\\", "/");
     }

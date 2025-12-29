@@ -8,6 +8,9 @@ import pages.CareerHomePage;
 
 import java.util.List;
 
+
+
+
 public class JobCategorySearchTest extends BaseTest {
 
 
@@ -37,7 +40,7 @@ public class JobCategorySearchTest extends BaseTest {
         // Check if the Sales Checkbox is checked :
         test.info("Verifying Category 'Sales' is selected");
         Assert.assertTrue(
-                careerFilterSection.isCareerFilterSelectCategory_SalesChecked());
+                careerFilterSection.isCategory_SalesChecked());
 
         test.pass("Verified Category 'Sales' is selected");
 
@@ -65,8 +68,14 @@ public class JobCategorySearchTest extends BaseTest {
 
 
         // Collecting information on Job categories
-        test.info("Verifying the count of the Germany filter search results is matching");
+        test.info("Verifying the count of the 'Germany Filter' search results is matching");
         List<String> salesJobCategory = careerFilterSection.getAllJobCategories();
+        int salesCategoriesCount = salesJobCategory.size(); // Closer to DOM for timing
+        int categoryLabelCount = careerFilterSection.getLabelResultCount();
+
+        // Verifying Germany Search result count is matching
+        Assert.assertEquals(salesCategoriesCount, categoryLabelCount);
+        test.pass("Verified the count of the Germany filter search results is matching. Count on Label: " + categoryLabelCount + ", Count in DOM Element: " + salesCategoriesCount+ ".");
 
 
         // Correctly checks that every returned result contains “Sales”
@@ -76,14 +85,6 @@ public class JobCategorySearchTest extends BaseTest {
 
         test.pass("Verified the search results category is 'Sales' on all results");
 
-        // Verifying Germany Search result count is matching
-        int salesCategoriesCount = salesJobCategory.size();
-        int categoryLabelCount = careerFilterSection.getLabelResultCount();
-
-        // Actual check here
-        Assert.assertEquals(salesCategoriesCount, categoryLabelCount);
-
-        test.pass("Verified the count of the Germany filter search results is matching. Count on Label: " + categoryLabelCount + ", Count in DOM Element: " + salesCategoriesCount+ ".");
 
 
     }

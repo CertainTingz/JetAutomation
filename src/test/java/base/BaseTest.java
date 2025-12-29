@@ -107,7 +107,7 @@ public class BaseTest {
 
             // Capturing and Attaching Screenshot
             String screenshotPath = ScreenshotUtility.takeScreenshot(page,testResult.getName());
-            System.out.println("Path Here Please: " + screenshotPath);
+            //System.out.println("Path Here Please: " + screenshotPath);
 
             test.addScreenCaptureFromPath(screenshotPath, "Screenshot");
 

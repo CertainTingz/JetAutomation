@@ -4,7 +4,9 @@
         <parameter name="browser" value="edge"/>
         <classes>
             <class name ="tests.JobTitleSearchTest"/>
-            <!--<class name ="tests.JobCategorySearchTest"/> -->
+            <class name ="tests.JobCategorySearchTest"/>
+            <class name ="tests.NoMatchJobSearchTest"/>
+            <class name ="tests.ClearAllFiltersTest"/>
         </classes>
     </test>
 
@@ -14,7 +16,9 @@
         <parameter name="browser" value="chrome"/>
         <classes>
             <class name ="tests.JobTitleSearchTest"/>
-            <!--  <class name ="tests.JobCategorySearchTest"/> -->
+            <class name ="tests.JobCategorySearchTest"/>
+            <class name ="tests.NoMatchJobSearchTest"/>
+            <class name ="tests.ClearAllFiltersTest"/>
          </classes>
      </test>
 
