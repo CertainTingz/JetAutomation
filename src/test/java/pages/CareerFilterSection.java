@@ -148,9 +148,7 @@ public class CareerFilterSection {
                 new Locator.WaitForOptions()
                         .setState(WaitForSelectorState.HIDDEN)
         );
-        if (appeared) {
-            System.out.println("Loader appeared and disappeared");
-        }
+        //if (appeared) {System.out.println("Loader appeared and disappeared"); }
 
     }
 

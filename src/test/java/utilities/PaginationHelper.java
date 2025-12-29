@@ -35,7 +35,7 @@ public class PaginationHelper {
 
 
                 String lastJobId = itemId.last().getAttribute("data-ph-at-job-id-text");
-                System.out.println("this is the jobID: " + lastJobId);
+                //System.out.println("this is the jobID: " + lastJobId);
 
                 nextArrow.click();
                 itemLocator.last().scrollIntoViewIfNeeded(); // making sure new content is in view
