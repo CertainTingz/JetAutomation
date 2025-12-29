@@ -106,7 +106,6 @@ public class CareerFilterSection {
 
 
 
-
     public List<String> getAllJobCategories() {
         //jobCategory.first().waitFor();
         return paginator.collectJobDataAcrossPages(jobCategory,jobId, nextPageArrow);

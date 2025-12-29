@@ -24,7 +24,6 @@ public class PaginationHelper {
             itemLocator.last().waitFor(new Locator.WaitForOptions()
                     .setState(WaitForSelectorState.VISIBLE));
 
-
             // Collect current page
             results.addAll(itemLocator.allInnerTexts());
 
@@ -33,7 +32,7 @@ public class PaginationHelper {
                 break;
             }
 
-            String lastJobId = itemId.first().getAttribute("data-ph-at-job-id-text");
+            String lastJobId = itemId.last().getAttribute("data-ph-at-job-id-text");
             System.out.println("this is the jobID: " +lastJobId);
 
             nextArrow.click();
