@@ -22,7 +22,7 @@
                 <version>3.2.5</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/suites/PlaywrightSuite1.xml</suiteXmlFile>
+                        <suiteXmlFile>/testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
