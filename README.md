@@ -87,13 +87,17 @@ mvn test -DsuiteXmlFile=testng.xml
 mvn test -DsuiteXmlFile=crossBrowserTesting.xml
 ```
 
+### Running Required Tests + 2 More Added Tests
+
+```
+mvn test -DsuiteXmlFile=testngExtraTests.xml
+```
+
 
 
 ### Running Tests in IDE
 
-1. Right-click on any test class or method in your IDE
-2. Select "Run" or "Debug"
-3. Alternatively, right-click on `testng.xml` and run it directly
+1. Right-click on `testng.xml`, `testngExtraTests.xml` or `crossBrowserTesting.xml`, and run it directly
 
 ## Test Configuration
 
@@ -162,7 +166,7 @@ The project includes automated tests for the Just Eat Takeaway careers website:
 
 ## Reporting
 
-Test reports are generated using ExtentReports and can be found in the `test-output` directory after test execution.
+Test reports are generated using ExtentReports and can be found in the `test_output` directory after test execution.
 
 ## Troubleshooting
 
