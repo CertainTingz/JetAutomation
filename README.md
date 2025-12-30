@@ -112,7 +112,11 @@ Tests can also be run on different browsers by running commands like below:
 Example:
 ```
 mvn test -Dbrowser=firefox 
+mvn test -Dbrowser=safari
 mvn test -Dbrowser=chrome
+mvn test -Dbrowser=edge
+
+
 ```
 
 

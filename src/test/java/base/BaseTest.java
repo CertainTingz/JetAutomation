@@ -74,7 +74,7 @@ public class BaseTest {
             case "safari":
                 browser = playwright.webkit().launch(
                         new BrowserType.LaunchOptions()
-                                .setHeadless(true)
+                                .setHeadless(false)
                 );
                 break;
 

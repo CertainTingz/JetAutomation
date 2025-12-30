@@ -4,8 +4,8 @@
         <classes>
         <class name ="tests.JobTitleSearchTest"/>
         <class name ="tests.JobCategorySearchTest"/>
-       <!-- <class name ="tests.NoMatchJobSearchTest"/>
-        <class name ="tests.ClearAllFiltersTest"/> -->
+       <class name ="tests.NoMatchJobSearchTest"/>
+        <class name ="tests.ClearAllFiltersTest"/>
 
           </classes>
       </test>
