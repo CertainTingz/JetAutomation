@@ -37,7 +37,7 @@ JetAutomation/
 ├── pom.xml                    # Maven configuration
 ├── testng.xml                 # TestNG configuration
 ├── crossBrowserTesting.xml    # Cross-browser testing configuration
-├── testngExtraTests.xml       # Required tests +2 more added tests configuration    
+├── testngExtraTests.xml       # +2 more added tests configuration    
 └── README.md
 ```
 ## Setup and Installation
@@ -87,7 +87,7 @@ mvn test -DsuiteXmlFile=testng.xml
 mvn test -DsuiteXmlFile=crossBrowserTesting.xml
 ```
 
-### Running Required Tests + 2 More Added Tests
+### Running + 2 More Added Tests
 
 ```
 mvn test -DsuiteXmlFile=testngExtraTests.xml

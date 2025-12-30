@@ -1,11 +1,11 @@
-<suite name="PlaywrightSuite1" thread-count="5" parallel="tests">
+<suite name="PlaywrightSuite1">
     <test name="BasicTests">
         <parameter name="browser" value="firefox"/>
         <classes>
         <class name ="tests.JobTitleSearchTest"/>
         <class name ="tests.JobCategorySearchTest"/>
-       <class name ="tests.NoMatchJobSearchTest"/>
-        <class name ="tests.ClearAllFiltersTest"/>
+       <!-- <class name ="tests.NoMatchJobSearchTest"/>
+        <class name ="tests.ClearAllFiltersTest"/> -->
 
           </classes>
       </test>
